@@ -1,40 +1,56 @@
 $(document).ready(function() {
     var apiURL = apiServerIP + '/api/v1/namespaces/' + namespace + '/pods';
-    // window.setInterval( function() {
+    callAJAX();
+    window.setInterval( function() {
+        callAJAX();
+    }, 2000);
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            serverList: [],
+        },
+        methods: {
+            showServers: function () {
+                console.log(this.serverList);
+            },
+            updateServers: function (serverList) {
+                this.serverList = serverList;
+            }
+        }
+    });
+
+    function callAJAX() {
         $.ajax({
             url: apiURL,
             crossDomain:true,
             type: 'get',
             success: function(data) {
-                updateServers(data);
+                getServers(data);
             }
         });
-    // }, 5000);
-    console.log(apiURL);
-
-    function updateServers(data) {
-        var items = data.items;
-        var servers = [];
-        console.log(items);
-        for (item of items) {
-            if (item.metadata.name.includes('rolling-express')) {
-                console.log(item.metadata.name, item.status.podIP);
-                servers.push('http://' + item.status.podIP + ':8080');
-            }
-        }
-
-        console.log(servers);
-
-        for (server in servers) {
-            $.ajax({
-                url: server,
-                crossDomain:true,
-                type: 'get',
-                success: function(data) {
-                    console.log(data);
-                }
-            });
-        }
     }
 
+    function getServers(data) {
+        var serverList = [];
+        var items = data.items;
+        var color;
+        for (item of items) {
+            try {
+                color = item.spec.containers[0].env[0].value;
+            }
+            catch (err) {
+                color = 'silver';
+            }
+            serverList.push(
+                {
+                    'hostname': item.metadata.name,
+                    'color': color,
+                    'status': item.status.phase
+                }
+            );
+        }
+        app.updateServers(serverList);
+        console.log('function called');
+    }
 });

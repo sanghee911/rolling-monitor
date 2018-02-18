@@ -1,0 +1,52 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+#title {
+    text-align: center;
+    background-color: #00530f;
+    color: white;
+    margin: 10px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 5px;
+}
+
+.wrapper {
+    float: left;
+    position: relative;
+    background-color: black;
+    margin: 10px;
+    width: 300px;
+    height: 300px;
+    word-wrap: break-word;
+    border-radius: 18px;
+}
+
+.server {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 30px;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 10px;
+}
+.hostname {
+    height: 70%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.server-status {
+    display: inline-block;
+    padding: 10px;
+    background: white;
+    margin: 0;
+    border-radius: 5px;
+}

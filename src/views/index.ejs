@@ -10,13 +10,22 @@
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script>
         var apiServerIP = <%- JSON.stringify(apiServerIP) %>;
         var namespace = <%- JSON.stringify(namespace) %>;
     </script>
 </head>
 <body>
-
+<div id="app">
+    <h1 id="title">All Pods in Service</h1>
+    <div class="wrapper" v-for="server in serverList">
+        <div class="server" v-bind:style="{ background: server.color }">
+            <p class="hostname">{{ server.hostname }}</p>
+            <p class="server-status">{{ server.status }}</p>
+        </div>
+    </div>
+</div>
 <script src="js/custom.js"></script>
 </body>
 </html>
