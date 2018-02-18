@@ -17,4 +17,4 @@ COPY /src .
 
 EXPOSE 8080
 
-CMD [ "node", "server" ]
+CMD [ "node", "monitor" ]
