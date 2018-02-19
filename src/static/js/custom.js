@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    var apiURL = apiServerIP + '/api/v1/namespaces/' + namespace + '/pods';
-    callAJAX();
+    const apiUrl = apiServerIP + '/api/v1/namespaces/' + namespace + '/pods/';
+    getPods();
     window.setInterval( function() {
-        callAJAX();
+        getPods();
     }, 2000);
 
     var app = new Vue({
@@ -12,17 +12,30 @@ $(document).ready(function() {
         },
         methods: {
             showServers: function () {
-                console.log(this.serverList);
+                // console.log(this.serverList);
             },
             updateServers: function (serverList) {
                 this.serverList = serverList;
+            },
+            deletePod: function () {
+                const hostname = event.currentTarget.innerHTML;
+                $.ajax({
+                    url: apiUrl + hostname,
+                    crossDomain:true,
+                    contentType: "application/json",
+                    type: 'DELETE',
+                    success: function(data) {
+                        console.log(data)
+                    },
+                });
+                // console.log(hostname);
             }
         }
     });
 
-    function callAJAX() {
+    function getPods() {
         $.ajax({
-            url: apiURL,
+            url: apiUrl,
             crossDomain:true,
             type: 'get',
             success: function(data) {
@@ -50,9 +63,9 @@ $(document).ready(function() {
                     'nodename': item.spec.nodeName
                 }
             );
-            console.log(item.spec.nodeName);
+            // console.log(item.spec.nodeName);
         }
         app.updateServers(serverList);
-        console.log('function called');
+        // console.log('function called');
     }
 });

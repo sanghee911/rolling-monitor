@@ -15,13 +15,14 @@
         var apiServerIP = <%- JSON.stringify(apiServerIP) %>;
         var namespace = <%- JSON.stringify(namespace) %>;
     </script>
+
 </head>
 <body>
 <div id="app">
     <h1 id="title">All Pods in Application Map</h1>
     <div class="wrapper" v-for="server in serverList">
         <div class="server" v-bind:style="{ background: server.color }">
-            <p class="hostname">{{ server.hostname }}</p>
+            <p class="hostname" v-on:click="deletePod">{{ server.hostname }}</p>
             <p class="server-status">{{ server.status }}</p>
             <p class="nodename">running on {{ server.nodename }}</p>
         </div>

@@ -7,10 +7,10 @@ const os = require('os');
 const PORT = 8080;
 const HOST = '0.0.0.0';
 
-// const apiServerIP = GetEnvironmentVar('API_SERVER_IP', 'http://35.200.62.214:8080');
-const apiServerIP = GetEnvironmentVar('API_SERVER_IP', 'http://localhost:8001');
-// const namespace = GetEnvironmentVar('NAMESPACE', 'odrly2-2-29-3');
-const namespace = GetEnvironmentVar('NAMESPACE', 'default');
+const apiServerIP = GetEnvironmentVar('API_SERVER_IP', 'http://35.200.62.214:8080');
+// const apiServerIP = GetEnvironmentVar('API_SERVER_IP', 'http://localhost:8001');
+const namespace = GetEnvironmentVar('NAMESPACE', 'odrly2-2-29-3');
+// const namespace = GetEnvironmentVar('NAMESPACE', 'default');
 
 // App
 const app = express();
