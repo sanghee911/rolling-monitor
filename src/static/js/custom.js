@@ -8,7 +8,7 @@ $(document).ready(function() {
     var app = new Vue({
         el: '#app',
         data: {
-            serverList: [],
+            serverList: []
         },
         methods: {
             showServers: function () {
@@ -46,9 +46,11 @@ $(document).ready(function() {
                 {
                     'hostname': item.metadata.name,
                     'color': color,
-                    'status': item.status.phase
+                    'status': item.status.phase,
+                    'nodename': item.spec.nodeName
                 }
             );
+            console.log(item.spec.nodeName);
         }
         app.updateServers(serverList);
         console.log('function called');

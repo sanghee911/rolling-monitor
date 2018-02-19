@@ -38,7 +38,7 @@ html, body {
     border-radius: 10px;
 }
 .hostname {
-    height: 70%;
+    height: 40%;
     margin: 0;
     box-sizing: border-box;
 }
@@ -50,3 +50,4 @@ html, body {
     margin: 0;
     border-radius: 5px;
 }
+

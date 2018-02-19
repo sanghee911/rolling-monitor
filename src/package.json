@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Node.js on Docker",
   "author": "First Last <first.last@example.com>",
-  "main": "server.js",
+  "main": "monitor.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node monotor.js"
   },
   "dependencies": {
     "ejs": "^2.5.7",

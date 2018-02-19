@@ -17,4 +17,8 @@ COPY /src .
 
 EXPOSE 8080
 
+ENV COLOR silver
+ENV API_SERVER_IP http://35.200.62.214:8080
+ENV NAMESPACE odrly2-2-29-3
+
 CMD [ "node", "monitor" ]
