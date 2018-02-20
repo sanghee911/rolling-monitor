@@ -47,19 +47,30 @@ $(document).ready(function() {
     function getServers(data) {
         var serverList = [];
         var items = data.items;
-        var color;
+        var color = 'silver';
+        var status;
         for (item of items) {
-            try {
-                color = item.spec.containers[0].env[0].value;
+            if (item.spec.containers[0].env != undefined) {
+                for (var i=0; i < item.spec.containers[0].env.length; i++) {
+                    if (item.spec.containers[0].env[i].name == 'COLOR') {
+                        color = item.spec.containers[0].env[i].value;
+                        break;
+                    } else {
+                        color = 'silver';
+                    }
+                }
             }
-            catch (err) {
-                color = 'silver';
+
+            if (item.metadata.deletionTimestamp) {
+                status = 'Terminating';
+            } else {
+                status = item.status.phase;
             }
             serverList.push(
                 {
                     'hostname': item.metadata.name,
                     'color': color,
-                    'status': item.status.phase,
+                    'status': status,
                     'nodename': item.spec.nodeName
                 }
             );
