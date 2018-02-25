@@ -1,19 +1,23 @@
 html, body {
     padding: 0;
     margin: 0;
+    background-color: #333;
 }
 
-#title {
-    text-align: center;
-    background-color: #00530f;
-    color: white;
-    /*height: 50px;*/
-    /*line-height: 50px;*/
-    border-radius: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-size: 30px;
-    padding: 5px;
+#nav-bar {
+    background-color: #111111;
+    height: 50px;
+    padding: 10px 20px;
+}
+
+#cocktail-logo {
+    float: left;
+    color: aquamarine;
+
+}
+
+#namu-logo {
+    float: right;
 }
 
 .node-wrapper {
@@ -23,13 +27,15 @@ html, body {
 .node-name {
     text-align: center;
     font-size: 20px;
-    background-color: skyblue;
+    background-color: #131313;
+    color: white;
     /*border-left: 1px solid black;*/
     /*border-right: 1px solid black;*/
     /*border-top: 1px solid black;*/
-    border: 3px solid black;
-    border-radius: 5px;
-    margin-top: 5px;
+    /*border: 3px solid black;*/
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+    /*border-radius: 5px;*/
+    margin-top: 10px;
     margin-bottom: 5px;
 }
 
@@ -50,31 +56,37 @@ html, body {
     margin: 5px;
     text-align: center;
     box-sizing: border-box;
-    /*padding: 5px;*/
-    border-radius: 10px;
-    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 2px;
+    background-color: #131313;
+    color: white;
+    /*border: 1px solid #555555;*/
+    /*box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);*/
 }
 .hostname {
-    height: 30%;
-    margin: 0;
+    height: 40%;
+    margin-bottom: 10px;
     box-sizing: border-box;
     cursor: pointer;
     font-size: 15px;
     font-weight: 600;
-    padding: 10px;
+    padding: 5px;
+    background-color: #1e1e1e;
+    border-bottom: 1px ;
 }
 
 .pod-status {
     display: inline-block;
-    position: absolute;
-    padding: 5px 15px 5px 15px;
-    background: white;
+    /*position: absolute;*/
+    padding: 5px 15px;
+    /*height: 50px;*/
+    background: #1e1e1e;
     margin: 5px;
     font-size: 15px;
-    border-radius: 5px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    /*border-radius: 5px;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*transform: translate(-50%, -50%);*/
 }
 .resource {
     position: absolute;
@@ -86,3 +98,6 @@ html, body {
     text-align: center;
 }
 
+.test {
+    color: limegreen;
+}

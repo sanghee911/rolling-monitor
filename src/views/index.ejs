@@ -21,14 +21,18 @@
 
 </head>
 <body>
+<div id="nav-bar">
+    <img id="cocktail-logo" src="img/cocktail-full-logo-white.svg" height="30" alt="">
+    <img id="namu-logo" src="img/namu-logo-white.svg" height="30" alt="">
+</div>
 <div id="app" class="container-fluid">
-    <p id="title">All Pods in Application Map</p>
     <div class="row">
         <div class="node-wrapper col" v-for="node in nodeList">
             <div class="node-name">
                 {{ node }}
             </div>
-            <div class="pod" v-for="pod in podList" v-if="node == 'minikube'" v-bind:style="{ background: pod.color }">
+            <!--<div class="pod" v-for="pod in podList" v-if="node == 'minikube'" v-bind:style="{ background: pod.color }">-->
+            <div class="pod" v-for="pod in podList" v-if="node == 'minikube'">
                 <div class="hostname" v-on:click="deletePod">{{ pod.hostname }}</div>
                 <div class="pod-status">
                     {{ pod.status }}
