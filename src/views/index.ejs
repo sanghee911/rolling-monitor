@@ -5,12 +5,15 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/custom.css">
     <title>Document</title>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script>
         var apiServerIP = <%- JSON.stringify(apiServerIP) %>;
         var namespace = <%- JSON.stringify(namespace) %>;
@@ -18,13 +21,22 @@
 
 </head>
 <body>
-<div id="app">
-    <h1 id="title">All Pods in Application Map</h1>
-    <div class="wrapper" v-for="server in serverList">
-        <div class="server" v-bind:style="{ background: server.color }">
-            <p class="hostname" v-on:click="deletePod">{{ server.hostname }}</p>
-            <p class="server-status">{{ server.status }}</p>
-            <p class="nodename">running on {{ server.nodename }}</p>
+<div id="app" class="container-fluid">
+    <p id="title">All Pods in Application Map</p>
+    <div class="row">
+        <div class="node-wrapper col" v-for="node in nodeList">
+            <div class="node-name">
+                {{ node }}
+            </div>
+            <div class="pod" v-for="pod in podList" v-if="node == 'minikube'" v-bind:style="{ background: pod.color }">
+                <div class="hostname" v-on:click="deletePod">{{ pod.hostname }}</div>
+                <div class="pod-status">
+                    {{ pod.status }}
+                </div>
+                <div class="resource">CPU: <span v-if="pod.cpu">{{ pod.cpu }}</span><span v-else="pod.cpu">N/A</span>
+                    | Mem: <span v-if="pod.memory">{{ pod.memory }}</span><span v-else="pod.memory">N/A</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
