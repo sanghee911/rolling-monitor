@@ -1,6 +1,7 @@
 $(document).ready(function() {
     const apiUrlPod = apiServerIP + '/api/v1/namespaces/' + namespace + '/pods/';
     const apiUrlNode = apiServerIP + '/api/v1/nodes/';
+
     getNodes();
     getPods();
     window.setInterval( function() {
@@ -12,14 +13,16 @@ $(document).ready(function() {
         el: '#app',
         data: {
             podList: [],
-            nodeList: ['node-1', 'minikube', 'node-3']
+            nodeList: ['node-1', 'minikube', 'node-3'],
+            podIndex: null
         },
         methods: {
             updatePods: function (podList) {
                 this.podList = podList;
             },
             deletePod: function () {
-                const hostname = event.currentTarget.innerHTML;
+                // const hostname = event.currentTarget.innerHTML;
+                const hostname = this.$refs.hostname[this.podIndex].innerHTML;
                 $.ajax({
                     url: apiUrlPod + hostname,
                     crossDomain:true,
@@ -32,6 +35,15 @@ $(document).ready(function() {
             },
             updateNodes: function (nodeList) {
 
+            },
+            setIndex: function (index) {
+                // console.log(index);
+                this.podIndex = index;
+                // console.log(this.$refs.hostname[index].innerHTML);
+            },
+            reSetIndex: function (index) {
+                // console.log('reset');
+                this.podIndex = null;
             }
         }
     });
@@ -52,7 +64,7 @@ $(document).ready(function() {
         var nodeList = [];
         var items = nodeData.items;
         for (i = 0; i < items.length; i++) {
-            console.log(items[i].metadata.name);
+            // console.log(items[i].metadata.name);
             nodeList.push(items[i].metadata.name);
         }
 
@@ -115,4 +127,7 @@ $(document).ready(function() {
         app.updatePods(podList);
         // console.log('function called');
     }
+
+
+
 });
