@@ -44,6 +44,12 @@ $(document).ready(function() {
             reSetIndex: function (index) {
                 // console.log('reset');
                 this.podIndex = null;
+            },
+            changeBorderColor: function($event) {
+                $event.target.style.borderColor = 'cyan'
+            },
+            revertBorderColor: function (color, $event) {
+                $event.target.style.borderColor = color;
             }
         }
     });
@@ -127,7 +133,5 @@ $(document).ready(function() {
         app.updatePods(podList);
         // console.log('function called');
     }
-
-
 
 });

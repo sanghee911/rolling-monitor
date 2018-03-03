@@ -28,19 +28,24 @@
 <div id="app" class="container-fluid">
     <div class="row">
         <div class="node-wrapper col" v-for="node in nodeList">
-            <div class="node-name">
-                {{ node }}
-            </div>
-            <div class="pod" v-for="(pod, index) in podList" v-if="node == 'minikube'">
-                <div class="hostname" ref="hostname" v-on:click="deletePod">{{ pod.hostname }}</div>
-                <div class="slide-frame" v-on:mouseenter="setIndex(index)" v-on:mouseleave="reSetIndex">
-                    <div class="slide-box" v-bind:class="{moveLeft: podIndex == index}">
-                        <div class="slide-left">{{ pod.status }}</div>
-                        <div class="slide-right" v-on:click="deletePod">Delete</div>
-                    </div>
+            <div class="node">
+                <div class="node-name">
+                    {{ node }}
                 </div>
-                <div class="resource">CPU: <span v-if="pod.cpu">{{ pod.cpu }}</span><span v-else="pod.cpu">N/A</span>
-                    | Mem: <span v-if="pod.memory">{{ pod.memory }}</span><span v-else="pod.memory">N/A</span>
+                <div class="pod" v-for="(pod, index) in podList"
+                     v-if="node == 'minikube'"
+                     v-bind:style="{borderColor: pod.color}"
+                     v-on:mouseenter="changeBorderColor($event)" v-on:mouseleave="revertBorderColor(pod.color, $event)">
+                    <div class="hostname" ref="hostname">{{ pod.hostname }}</div>
+                    <div class="slide-frame" v-on:mouseenter="setIndex(index)" v-on:mouseleave="reSetIndex">
+                        <div class="slide-box" v-bind:class="{moveLeft: podIndex == index}">
+                            <div class="slide-left" v-bind:class="{terminating: pod.status == 'Terminating'}">{{ pod.status }}</div>
+                            <div class="slide-right" v-on:click="deletePod">Delete</div>
+                        </div>
+                    </div>
+                    <div class="resource">CPU: <span v-if="pod.cpu">{{ pod.cpu }}</span><span v-else="pod.cpu">N/A</span>
+                        | Mem: <span v-if="pod.memory">{{ pod.memory }}</span><span v-else="pod.memory">N/A</span>
+                    </div>
                 </div>
             </div>
         </div>
