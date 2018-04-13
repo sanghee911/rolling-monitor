@@ -13,7 +13,8 @@ $(document).ready(function() {
         el: '#app',
         data: {
             podList: [],
-            nodeList: ['node-1', 'minikube', 'node-3'],
+            nodeList: [],
+            // nodeList: ['node-1', 'minikube', 'node-3'],
             podIndex: null
         },
         methods: {
@@ -21,15 +22,15 @@ $(document).ready(function() {
                 this.podList = podList;
             },
             deletePod: function () {
-                // const hostname = event.currentTarget.innerHTML;
-                const hostname = this.$refs.hostname[this.podIndex].innerHTML;
+                const hostname = event.currentTarget.parentElement.parentElement.previousElementSibling.innerHTML;
+                console.log(hostname);
                 $.ajax({
                     url: apiUrlPod + hostname,
                     crossDomain:true,
                     contentType: "application/json",
                     type: 'DELETE',
                     success: function(data) {
-                        console.log(data)
+                        // console.log(data)
                     },
                 });
             },
@@ -74,7 +75,7 @@ $(document).ready(function() {
             nodeList.push(items[i].metadata.name);
         }
 
-        // app.nodeList = nodeList;
+        app.nodeList = nodeList;
     }
 
     function getPods() {
@@ -84,6 +85,7 @@ $(document).ready(function() {
             type: 'get',
             success: function(data) {
                 analysePodData(data);
+                // console.log(data.items[0].spec.nodeName);
             }
         });
     }

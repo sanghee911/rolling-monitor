@@ -9,8 +9,8 @@ const HOST = '0.0.0.0';
 
 // const apiServerIP = GetEnvironmentVar('API_SERVER_IP', 'http://35.200.62.214:8080');
 const apiServerIP = GetEnvironmentVar('API_SERVER_IP', 'http://localhost:8001');
-// const namespace = GetEnvironmentVar('NAMESPACE', 'odrly2-2-29-3');
-const namespace = GetEnvironmentVar('NAMESPACE', 'default');
+const namespace = GetEnvironmentVar('NAMESPACE', 'yje4zd-2-7-1');
+// const namespace = GetEnvironmentVar('NAMESPACE', 'default');
 
 // App
 const app = express();
@@ -37,5 +37,5 @@ function GetEnvironmentVar(varname, defaultvalue) {
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
-console.log(apiServerIP);
+// console.log(apiServerIP);
 

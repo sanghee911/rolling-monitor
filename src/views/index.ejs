@@ -33,10 +33,9 @@
                     {{ node }}
                 </div>
                 <div class="pod" v-for="(pod, index) in podList"
-                     v-if="node == 'minikube'"
-                     v-bind:style="{borderColor: pod.color}"
-                     v-on:mouseenter="changeBorderColor($event)" v-on:mouseleave="revertBorderColor(pod.color, $event)">
-                    <div class="hostname" ref="hostname">{{ pod.hostname }}</div>
+                     v-if="node == pod.nodename"
+                     v-bind:style="{borderColor: pod.color}">
+                    <div class="hostname" ref="{{ pod.hostname }}">{{ pod.hostname }}</div>
                     <div class="slide-frame" v-on:mouseenter="setIndex(index)" v-on:mouseleave="reSetIndex">
                         <div class="slide-box" v-bind:class="{moveLeft: podIndex == index}">
                             <div class="slide-left" v-bind:class="{terminating: pod.status == 'Terminating'}">{{ pod.status }}</div>
