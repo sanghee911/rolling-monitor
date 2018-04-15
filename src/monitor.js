@@ -9,7 +9,7 @@ const HOST = '0.0.0.0';
 
 // const apiServerIP = GetEnvironmentVar('API_SERVER_IP', 'http://35.200.62.214:8080');
 const apiServerIP = GetEnvironmentVar('API_SERVER_IP', 'http://localhost:8001');
-const namespace = GetEnvironmentVar('NAMESPACE', 'yje4zd-2-7-1');
+const namespace = GetEnvironmentVar('NAMESPACE', 'demo-dev');
 // const namespace = GetEnvironmentVar('NAMESPACE', 'default');
 
 // App
